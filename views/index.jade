@@ -1,0 +1,56 @@
+doctype html
+html(ng-app="contactListApp")
+  head
+    title="Contact List"
+
+    link(href='/-/css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    link(href='/-/css/style.css', rel='stylesheet', type='text/css')
+
+  body(ng-controller="ContactsController")
+    div(id='main')
+      div(class="row")
+        div(class="col-md-8")
+
+          h2="Contact list"
+
+          table(id="contacts", class="table")
+            thead
+              tr
+                th="Last Name"
+                th="First Name"
+                th="Phone"
+                th="Email"
+                th
+            tbody
+              tr(ng-repeat="contact in contacts")
+                td="{{contact.lastName}}"
+                td="{{contact.firstName}}"
+                td="{{contact.phone}}"
+                td="{{contact.email}}"
+                td
+                  span(class="glyphicon glyphicon-remove-circle", ng-click="deleteContact(contact)")
+
+
+        div(class="col-md-4")
+
+          h4="Add new contact"
+
+          div(id="contact-form")
+            form(role="form", ng-submit="processForm()")
+              div(class="form-group")
+                input(type="text", class="form-control", name="first-name", placeholder="First Name", ng-model="formData.firstName")
+
+              div(class="form-group")
+                input(type="text", class="form-control", name="last-name", placeholder="Last Name", ng-model="formData.lastName")
+
+              div(class="form-group")
+                input(type="text", class="form-control", name="phone", placeholder="Phone", ng-model="formData.phone")
+
+              div(class="form-group")
+                input(type="text", class="form-control", name="email", placeholder="Email", ng-model="formData.email")
+
+              button(id="contact-add")="Add"
+
+
+    script(src='/-/js/angular.js')
+    script(src='/-/js/controllers.js')
